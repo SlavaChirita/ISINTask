@@ -71,12 +71,10 @@ class ChartViewController: UIViewController, ChartDisplayLogic, ChartViewDelegat
   
     func displayData(viewModel: ChartData) {
         chartView.data = viewModel.lineData
-        
         chartView.xAxis.labelFont = UIFont(name: "HelveticaNeue-Medium", size: 10)!
         chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: viewModel.xAxisLabels ?? [])
         chartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
         chartView.xAxis.granularity = 0.5
-        
         chartView.notifyDataSetChanged()
     }
     
@@ -86,7 +84,6 @@ class ChartViewController: UIViewController, ChartDisplayLogic, ChartViewDelegat
     
     @IBAction func dateSegmentValueDidChange(_ sender: UISegmentedControl) {
         
-        print(sender.selectedSegmentIndex)
         switch sender.selectedSegmentIndex {
         case 0:
             chosenPeriod = .oneWeek
@@ -112,7 +109,6 @@ class ChartViewController: UIViewController, ChartDisplayLogic, ChartViewDelegat
     }
     
     @IBAction func strategyButtonDidTap(_ sender: UIButton) {
-        print(sender.titleLabel?.text ?? "")
         strategyView.isHidden = strategyView.isHidden ? false : true
     }
     

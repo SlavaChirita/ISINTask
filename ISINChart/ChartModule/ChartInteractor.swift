@@ -53,17 +53,11 @@ class ChartInteractor: ChartBusinessLogic {
     private func getDataForWeek(strategy: String) -> ChartData {
         let months = ["25.09", "26.09", "27.09", "28.09", "29.09", "30.09", "31.09"]
         if strategy == "Yield" {
-            guard let data = weekDataYield else {
-                weekDataYield = ChartData(lineData: generateData(dataVolume: months.count, strategy: strategy), xAxisLabels: months)
-                return weekDataYield!
-            }
-            return data
+            getDataAccordingToStrategy(periodDataStrategy: &weekDataYield, strategy: "Yield", xAxisLabels: months)
+            return weekDataYield!
         } else {
-            guard let data = weekDataPrice else {
-                weekDataPrice = ChartData(lineData: generateData(dataVolume: months.count, strategy: strategy), xAxisLabels: months)
-                return weekDataPrice!
-            }
-            return data
+            getDataAccordingToStrategy(periodDataStrategy: &weekDataPrice, strategy: "Price", xAxisLabels: months)
+            return weekDataPrice!
         }
     }
     
@@ -73,17 +67,11 @@ class ChartInteractor: ChartBusinessLogic {
             months.append("\(i+1).09")
         }
         if strategy == "Yield" {
-            guard let data = monthDataYield else {
-                monthDataYield = ChartData(lineData: generateData(dataVolume: months.count, strategy: strategy), xAxisLabels: months)
-                return monthDataYield!
-            }
-            return data
+            getDataAccordingToStrategy(periodDataStrategy: &monthDataYield, strategy: "Yield", xAxisLabels: months)
+            return monthDataYield!
         } else {
-            guard let data = monthDataPrice else {
-                monthDataPrice = ChartData(lineData: generateData(dataVolume: months.count, strategy: strategy), xAxisLabels: months)
-                return monthDataPrice!
-            }
-            return data
+            getDataAccordingToStrategy(periodDataStrategy: &monthDataPrice, strategy: "Price", xAxisLabels: months)
+            return monthDataPrice!
         }
     }
     
@@ -91,17 +79,11 @@ class ChartInteractor: ChartBusinessLogic {
         let months = ["Jul", "Sep", "Aug"]
         
         if strategy == "Yield" {
-            guard let data = threeMonthsDataYield else {
-                threeMonthsDataYield = ChartData(lineData: generateData(dataVolume: months.count, strategy: strategy), xAxisLabels: months)
-                return threeMonthsDataYield!
-            }
-            return data
+            getDataAccordingToStrategy(periodDataStrategy: &threeMonthsDataYield, strategy: "Yield", xAxisLabels: months)
+            return threeMonthsDataYield!
         } else {
-            guard let data = threeMonthsDataPrice else {
-                threeMonthsDataPrice = ChartData(lineData: generateData(dataVolume: months.count, strategy: strategy), xAxisLabels: months)
-                return threeMonthsDataPrice!
-            }
-            return data
+            getDataAccordingToStrategy(periodDataStrategy: &threeMonthsDataPrice, strategy: "Price", xAxisLabels: months)
+            return threeMonthsDataPrice!
         }
     }
     
@@ -109,17 +91,11 @@ class ChartInteractor: ChartBusinessLogic {
         let months = ["Apr", "May", "Jun", "Jul", "Sep", "Aug"]
         
         if strategy == "Yield" {
-            guard let data = sixMonthsDataYield else {
-                sixMonthsDataYield = ChartData(lineData: generateData(dataVolume: months.count, strategy: strategy), xAxisLabels: months)
-                return sixMonthsDataYield!
-            }
-            return data
+            getDataAccordingToStrategy(periodDataStrategy: &sixMonthsDataYield, strategy: "Yield", xAxisLabels: months)
+            return sixMonthsDataYield!
         } else {
-            guard let data = sixMonthsDataPrice else {
-                sixMonthsDataPrice = ChartData(lineData: generateData(dataVolume: months.count, strategy: strategy), xAxisLabels: months)
-                return sixMonthsDataPrice!
-            }
-            return data
+            getDataAccordingToStrategy(periodDataStrategy: &sixMonthsDataPrice, strategy: "Price", xAxisLabels: months)
+            return sixMonthsDataYield!
         }
     }
     
@@ -127,17 +103,11 @@ class ChartInteractor: ChartBusinessLogic {
         let months = ["Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"]
         
         if strategy == "Yield" {
-            guard let data = oneYearDataYield else {
-                oneYearDataYield = ChartData(lineData: generateData(dataVolume: months.count, strategy: strategy), xAxisLabels: months)
-                return oneYearDataYield!
-            }
-            return data
+            getDataAccordingToStrategy(periodDataStrategy: &oneYearDataYield, strategy: strategy, xAxisLabels: months)
+            return oneYearDataYield!
         } else {
-            guard let data = oneYearDataPrice else {
-                oneYearDataPrice = ChartData(lineData: generateData(dataVolume: months.count, strategy: strategy), xAxisLabels: months)
-                return oneYearDataPrice!
-            }
-            return data
+            getDataAccordingToStrategy(periodDataStrategy: &oneYearDataPrice, strategy: strategy, xAxisLabels: months)
+            return oneYearDataPrice!
         }
     }
     
@@ -148,17 +118,17 @@ class ChartInteractor: ChartBusinessLogic {
         ]
         
         if strategy == "Yield" {
-            guard let data = twoYearsDataYield else {
-                twoYearsDataYield = ChartData(lineData: generateData(dataVolume: months.count, strategy: strategy), xAxisLabels: months)
-                return twoYearsDataYield!
-            }
-            return data
+            getDataAccordingToStrategy(periodDataStrategy: &twoYearsDataYield, strategy: strategy, xAxisLabels: months)
+            return twoYearsDataYield!
         } else {
-            guard let data = twoYearsDataPrice else {
-                twoYearsDataPrice = ChartData(lineData: generateData(dataVolume: months.count, strategy: strategy), xAxisLabels: months)
-                return twoYearsDataPrice!
-            }
-            return data
+            getDataAccordingToStrategy(periodDataStrategy: &twoYearsDataPrice, strategy: strategy, xAxisLabels: months)
+            return twoYearsDataPrice!
+        }
+    }
+    
+    private func getDataAccordingToStrategy(periodDataStrategy: inout ChartData?, strategy: String, xAxisLabels: [String]) {
+        if periodDataStrategy == nil {
+            periodDataStrategy = ChartData(lineData: generateData(dataVolume: xAxisLabels.count, strategy: strategy), xAxisLabels: xAxisLabels)
         }
     }
     
