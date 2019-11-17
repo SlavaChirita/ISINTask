@@ -10,11 +10,10 @@ import UIKit
 import Charts
 
 protocol ChartBusinessLogic {
-    func requestData(for period: ChartPeriod, strategy: String)
+    func requestData(for period: Int, strategy: String)
 }
 
 class ChartInteractor: ChartBusinessLogic {
-    
     var presenter: ChartPresentationLogic?
     
     private var weekDataPrice: ChartData?
@@ -31,21 +30,21 @@ class ChartInteractor: ChartBusinessLogic {
     private var oneYearDataYield: ChartData?
     private var twoYearsDataYield: ChartData?
     
-    func requestData(for period: ChartPeriod, strategy: String) {
+    func requestData(for period: Int, strategy: String) {
         switch period {
-        case .oneWeek:
+        case 0:
             presenter?.presentData(response: getDataForWeek(strategy: strategy))
-        case .oneMonth:
+        case 1:
             presenter?.presentData(response: getDataForMonth(strategy: strategy))
-        case .threeMonths:
+        case 2:
             presenter?.presentData(response: getDataForThreeMonths(strategy: strategy))
-        case .sixMonths:
+        case 3:
             presenter?.presentData(response: getDataForSixMonths(strategy: strategy))
-        case .oneYear:
+        case 4:
             presenter?.presentData(response: getDataForYear(strategy: strategy))
-        case .twoYears:
+        case 5:
             presenter?.presentData(response: getDataForTwoYears(strategy: strategy))
-        @unknown default:
+        default:
             break
         }
     }
@@ -95,7 +94,7 @@ class ChartInteractor: ChartBusinessLogic {
             return sixMonthsDataYield!
         } else {
             getDataAccordingToStrategy(periodDataStrategy: &sixMonthsDataPrice, strategy: "Price", xAxisLabels: months)
-            return sixMonthsDataYield!
+            return sixMonthsDataPrice!
         }
     }
     

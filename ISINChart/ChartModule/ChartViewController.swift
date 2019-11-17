@@ -21,7 +21,7 @@ class ChartViewController: UIViewController, ChartDisplayLogic, ChartViewDelegat
     @IBOutlet weak var strategyView: UIView!
     @IBOutlet weak var strategyLabel: UILabel!
     
-    private var chosenPeriod = ChartPeriod.oneWeek
+    private var chosenPeriod = 0
     var interactor: ChartBusinessLogic?
     var router: (NSObjectProtocol & ChartRoutingLogic)?
       
@@ -46,16 +46,6 @@ class ChartViewController: UIViewController, ChartDisplayLogic, ChartViewDelegat
         strategyView.addGestureRecognizer(tapGesture)
         strategyView.isUserInteractionEnabled = true
         
-        strategyButton.layer.borderWidth = 1
-        strategyButton.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.52)
-        strategyButton.layer.masksToBounds = true
-        strategyButton.layer.cornerRadius = 20
-        
-        strategyView.layer.borderWidth = 1
-        strategyView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.52)
-        strategyView.layer.masksToBounds = true
-        strategyView.layer.cornerRadius = 20
-        
         setup()
     }
     
@@ -63,9 +53,7 @@ class ChartViewController: UIViewController, ChartDisplayLogic, ChartViewDelegat
         super.viewWillAppear(animated)
         
         strategyView.isHidden = true
-        
         strategyButton.setTitle("Yield", for: .normal)
-        
         interactor?.requestData(for: chosenPeriod, strategy: strategyButton.title(for: .normal)!)
     }
   
@@ -83,29 +71,8 @@ class ChartViewController: UIViewController, ChartDisplayLogic, ChartViewDelegat
     }
     
     @IBAction func dateSegmentValueDidChange(_ sender: UISegmentedControl) {
-        
-        switch sender.selectedSegmentIndex {
-        case 0:
-            chosenPeriod = .oneWeek
-            interactor?.requestData(for: chosenPeriod, strategy: strategyButton.title(for: .normal)!)
-        case 1:
-            chosenPeriod = .oneMonth
-            interactor?.requestData(for: chosenPeriod, strategy: strategyButton.title(for: .normal)!)
-        case 2:
-            chosenPeriod = .threeMonths
-            interactor?.requestData(for: chosenPeriod, strategy: strategyButton.title(for: .normal)!)
-        case 3:
-            chosenPeriod = .sixMonths
-            interactor?.requestData(for: chosenPeriod, strategy: strategyButton.title(for: .normal)!)
-        case 4:
-            chosenPeriod = .oneYear
-            interactor?.requestData(for: chosenPeriod, strategy: strategyButton.title(for: .normal)!)
-        case 5:
-            chosenPeriod = .twoYears
-            interactor?.requestData(for: chosenPeriod, strategy: strategyButton.title(for: .normal)!)
-        default:
-            break
-        }
+        chosenPeriod = sender.selectedSegmentIndex
+        interactor?.requestData(for: chosenPeriod, strategy: strategyButton.title(for: .normal)!)
     }
     
     @IBAction func strategyButtonDidTap(_ sender: UIButton) {

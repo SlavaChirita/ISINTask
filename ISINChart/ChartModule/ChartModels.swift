@@ -13,12 +13,3 @@ struct ChartData {
     var lineData: LineChartData?
     var xAxisLabels: [String]?
 }
-
-enum ChartPeriod {
-    case oneWeek
-    case oneMonth
-    case threeMonths
-    case sixMonths
-    case oneYear
-    case twoYears
-}

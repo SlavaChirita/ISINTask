@@ -23,7 +23,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="ddb-OJ-U4O">
                                 <rect key="frame" x="21" y="33" width="100" height="81"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbF-Hp-SGz">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbF-Hp-SGz" customClass="StrategyButton" customModule="ISINChart" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="4LB-4L-wAK"/>
@@ -37,7 +37,7 @@
                                             <action selector="strategyButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1W1-ln-HUZ"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FtG-Q8-U1z">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FtG-Q8-U1z" customClass="StrategyView" customModule="ISINChart" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="41" width="100" height="40"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vd-6E-x4T">
